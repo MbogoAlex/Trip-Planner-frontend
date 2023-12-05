@@ -11,15 +11,22 @@ import 'package:orchestrator/bloc/fetch_trips/fetch_trips_state.dart';
 
 import 'package:orchestrator/models/trip_interest.dart';
 import 'package:orchestrator/screens/in_app/propose_trip.dart';
+import 'package:orchestrator/screens/widgets/heading_text.dart';
 
 import 'package:orchestrator/screens/widgets/interested_trip_card_display_widget.dart';
 import 'package:orchestrator/screens/widgets/trip_card_display.dart';
 import 'package:orchestrator/utils/dimensions.dart';
+// import 'dart:developer' as debug;
 
 class HomePage extends StatefulWidget {
   final String userName;
   final int userId;
-  const HomePage({super.key, required this.userName, required this.userId});
+  final int? currentIndex;
+  const HomePage(
+      {super.key,
+      required this.userName,
+      required this.userId,
+      this.currentIndex});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -37,6 +44,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    currentIndex = widget.currentIndex ?? 0;
+  }
+
+  @override
   Widget build(BuildContext context) {
     // double screenHeight = MediaQuery.of(context).size.height;
     // print("SCREEN HEIGHT IS: $screenHeight");
@@ -51,6 +64,22 @@ class _HomePageState extends State<HomePage> {
           title: currentIndex == 0
               ? const Text("All trips")
               : const Text("Trips you are interested in"),
+          actions: [
+            currentIndex == 0
+                ? Container(
+                    margin: EdgeInsets.only(right: screenWidth(25)),
+                    child: Row(
+                      children: [
+                        Text(
+                          widget.userName,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const Icon(Icons.person),
+                      ],
+                    ),
+                  )
+                : SizedBox(),
+          ],
         ),
         body: currentBodyWidget(),
         floatingActionButton: currentIndex == 0
@@ -134,16 +163,6 @@ class _HomePageState extends State<HomePage> {
                   }
                   return ListView.builder(
                     itemBuilder: (context, index) {
-                      if (state.trips![index].tripInterests!.isNotEmpty) {
-                        for (TripInterest tripInterest
-                            in state.trips![index].tripInterests!) {
-                          if (tripInterest.interestedPersonId ==
-                              widget.userId) {
-                            tripInterestExpressed = true;
-                            break;
-                          }
-                        }
-                      }
                       return TripCardDisplay(
                         trip: state.trips![index],
                         userId: widget.userId,

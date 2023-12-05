@@ -105,7 +105,7 @@ class _InterestedTripCardDisplayState extends State<InterestedTripCardDisplay> {
               Row(
                 children: [
                   const Text(
-                    "Proposed on",
+                    "Proposed on: ",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   NormalText(text: widget.trip.dateAndTime),
@@ -121,9 +121,9 @@ class _InterestedTripCardDisplayState extends State<InterestedTripCardDisplay> {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   NormalText(
-                      text: widget.trip.message.length < 40
+                      text: widget.trip.message.length < 20
                           ? widget.trip.message
-                          : "${widget.trip.message.substring(0, 40)}..."),
+                          : "${widget.trip.message.substring(0, 20)}..."),
                 ],
               ),
               const SizedBox(
@@ -138,6 +138,9 @@ class _InterestedTripCardDisplayState extends State<InterestedTripCardDisplay> {
                   NormalText(text: widget.tripInterest.localDateTime),
                 ],
               ),
+              SizedBox(
+                height: screenHeight(10),
+              ),
               Row(
                 children: [
                   const Text(
@@ -146,9 +149,9 @@ class _InterestedTripCardDisplayState extends State<InterestedTripCardDisplay> {
                   ),
                   NormalText(
                       text: widget.tripInterest.interestedPersonMessage.length <
-                              40
+                              20
                           ? widget.tripInterest.interestedPersonMessage
-                          : "${widget.tripInterest.interestedPersonMessage.substring(0, 40)}..."),
+                          : "${widget.tripInterest.interestedPersonMessage.substring(0, 20)}..."),
                 ],
               ),
               SizedBox(
@@ -246,26 +249,29 @@ class _InterestedTripCardDisplayState extends State<InterestedTripCardDisplay> {
                               width: screenWidth(200),
                               height: screenHeight(40),
                               decoration: BoxDecoration(
-                                color: const Color(0xFF4ECDBE),
+                                color: Colors.blue,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(screenWidth(10)),
                                 ),
                                 border: Border(
                                   bottom: BorderSide(
                                       width: screenWidth(1),
-                                      color: const Color(0xFF4ECDBE)),
+                                      color: Colors.blue),
                                   left: BorderSide(
                                       width: screenWidth(1),
-                                      color: const Color(0xFF4ECDBE)),
+                                      color: Colors.blue),
                                   right: BorderSide(
                                       width: screenWidth(1),
-                                      color: const Color(0xFF4ECDBE)),
+                                      color: Colors.blue),
                                   top: BorderSide(
                                       width: screenWidth(1),
-                                      color: const Color(0xFF4ECDBE)),
+                                      color: Colors.blue),
                                 ),
                               ),
-                              child: SizedBox(
+                              child: Container(
+                                margin: EdgeInsets.only(
+                                    top: screenHeight(10),
+                                    bottom: screenHeight(10)),
                                 height: screenHeight(5),
                                 width: screenWidth(5),
                                 child: const Center(

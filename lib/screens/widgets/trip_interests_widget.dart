@@ -50,7 +50,7 @@ class _TripInterestsWidgetState extends State<TripInterestsWidget> {
             });
       },
       child: Container(
-        // margin: const EdgeInsets.all(5),
+        margin: EdgeInsets.only(top: screenHeight(10)),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(screenWidth(10))),

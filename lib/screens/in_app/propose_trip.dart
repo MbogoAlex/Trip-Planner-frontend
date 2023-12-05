@@ -55,7 +55,7 @@ class _ProposeTripState extends State<ProposeTrip> {
                   controller: locationController,
                   inputHeading: "Trip location",
                   hintText: "Enter trip location",
-                  formHeight: screenHeight(50),
+                  formHeight: screenHeight(60),
                   maxLines: null,
                   centered: true,
                 ),

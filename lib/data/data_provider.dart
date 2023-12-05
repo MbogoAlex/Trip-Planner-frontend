@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class DataProvider {
-  static String baseUrl = "http://192.168.122.1:5000";
+  static String baseUrl = "http://192.168.181.6:5000";
 
   Future<Map<String, dynamic>> saveUser(String userName) async {
     final person = {"userName": userName};

@@ -7,6 +7,7 @@ import 'package:orchestrator/bloc/express_trip_interest/express_trip_interest_bl
 import 'package:orchestrator/bloc/express_trip_interest/express_trip_interest_event.dart';
 import 'package:orchestrator/bloc/express_trip_interest/express_trip_interest_state.dart';
 import 'package:orchestrator/models/trip.dart';
+// import 'package:orchestrator/models/trip_interest.dart';
 import 'package:orchestrator/screens/in_app/home_page.dart';
 import 'package:orchestrator/screens/in_app/trip_interests.dart';
 import 'package:orchestrator/screens/widgets/custom_button.dart';
@@ -33,6 +34,18 @@ class TripCardDisplay extends StatefulWidget {
 
 class _TripCardDisplayState extends State<TripCardDisplay> {
   TextEditingController messageController = TextEditingController();
+  bool tripInterestExpressed = false;
+  void isInterested() {
+    tripInterestExpressed = widget.trip.tripInterests!
+        .any((interest) => interest.interestedPersonId == widget.userId);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    isInterested();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -83,7 +96,7 @@ class _TripCardDisplayState extends State<TripCardDisplay> {
                 ),
                 border: Border.all(
                   width: screenWidth(1),
-                  color: const Color(0xFF4ECDBE),
+                  color: Colors.blue,
                 ),
               ),
               child: Column(
@@ -255,23 +268,27 @@ class _TripCardDisplayState extends State<TripCardDisplay> {
                             width: screenWidth(260),
                             height: screenHeight(50),
                             decoration: BoxDecoration(
-                              color: const Color(0xFF4ECDBE),
+                              color: Colors.blue,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(screenWidth(10)),
                               ),
                               border: Border(
                                 bottom: BorderSide(
-                                    width: screenWidth(1),
-                                    color: const Color(0xFF4ECDBE)),
+                                  width: screenWidth(1),
+                                  color: Colors.blue,
+                                ),
                                 left: BorderSide(
-                                    width: screenWidth(1),
-                                    color: const Color(0xFF4ECDBE)),
+                                  width: screenWidth(1),
+                                  color: Colors.blue,
+                                ),
                                 right: BorderSide(
-                                    width: screenWidth(1),
-                                    color: const Color(0xFF4ECDBE)),
+                                  width: screenWidth(1),
+                                  color: Colors.blue,
+                                ),
                                 top: BorderSide(
-                                    width: screenWidth(1),
-                                    color: const Color(0xFF4ECDBE)),
+                                  width: screenWidth(1),
+                                  color: Colors.blue,
+                                ),
                               ),
                             ),
                             child: SizedBox(
@@ -326,7 +343,7 @@ class _TripCardDisplayState extends State<TripCardDisplay> {
                   ),
                   widget.trip.userID == widget.userId
                       ? const SizedBox()
-                      : widget.tripInterestExpressed
+                      : tripInterestExpressed
                           ? Container(
                               width: screenWidth(260),
                               height: screenHeight(50),
@@ -405,10 +422,11 @@ class _TripCardDisplayState extends State<TripCardDisplay> {
                                                     MaterialPageRoute(
                                                       builder: (context) =>
                                                           HomePage(
-                                                              userName: widget
-                                                                  .userName,
-                                                              userId: widget
-                                                                  .userId),
+                                                        userName:
+                                                            widget.userName,
+                                                        userId: widget.userId,
+                                                        currentIndex: 1,
+                                                      ),
                                                     ),
                                                   );
                                                 } else if (state.status ==

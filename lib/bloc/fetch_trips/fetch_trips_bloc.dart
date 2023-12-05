@@ -62,7 +62,7 @@ class FetchTripsBloc extends Bloc<FetchTripsEvent, FetchTripsState> {
       String location, List tripInterests) async {
     DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm");
     return Future.wait(
-      tripInterests.map((dynamic json) async {
+      tripInterests.reversed.map((dynamic json) async {
         return TripInterest(
           tripID: json['tripID'],
           location: location,
