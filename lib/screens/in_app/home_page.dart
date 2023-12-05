@@ -11,7 +11,6 @@ import 'package:orchestrator/bloc/fetch_trips/fetch_trips_state.dart';
 
 import 'package:orchestrator/models/trip_interest.dart';
 import 'package:orchestrator/screens/in_app/propose_trip.dart';
-import 'package:orchestrator/screens/widgets/heading_text.dart';
 
 import 'package:orchestrator/screens/widgets/interested_trip_card_display_widget.dart';
 import 'package:orchestrator/screens/widgets/trip_card_display.dart';
